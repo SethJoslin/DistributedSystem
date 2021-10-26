@@ -5,10 +5,10 @@
 //this will be the automated process of configuring OpenMPI
 
 int main(){
-    //dependency
+    //test if arch is Armvl7 
     FILE* archOutput = popen("uname -m", "r");
     char arch[15];
-    char arm[15] = "Armvl7"; //fix this
+    char arm[] = "Armv7l"; //fix this
     if(archOutput != nullptr){
         fgets(arch, sizeof(arch), archOutput);
         if(strcmp(arch, arm) == 0){
@@ -20,7 +20,7 @@ int main(){
     //determine operating system
     FILE* OSOutput = popen("uname -s", "r");
     char os[15];
-    char mac[15] = "Darwin\n";
+    char mac[] = "Darwin\n";
     if(OSOutput != nullptr){
         fgets(os, sizeof(os), OSOutput);
         cout << os; //for debugging
@@ -35,7 +35,7 @@ int main(){
     system("cd openmpi-4.1.1");
     system("configure --prefix=$HOME/openmpi --with-hwloc=internal --with-libevent=internal --enable-heterogeneous");
     system("sudo make all && sudo make install");
-    //how to prompt to ask for password
+    //investigate how to prompt to ask for password outside of terminal
 
     //update environment variables
     system("perl -pi -e 'print \"export PATH=$PATH ~/openmpi/bin\\n\" if $. == 1' ~/Desktop/thesis/env.txt");
@@ -50,11 +50,3 @@ int main(){
 
     return 0;
 }
-
-
-
-
-
-/*
-
-*/
