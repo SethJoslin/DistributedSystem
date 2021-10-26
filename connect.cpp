@@ -1,14 +1,7 @@
 #include <mpi.h>
 #include <iostream>
 
-//-npernode option allows you to specify how many processes to run on each node
-        //this would allow for better node utilization
 
-//run with option -host workermac to send to mac
-
-//mpic++ -o connect.out connect.cpp
-//mpirun --host workermac ~/Desktop/thesis/connect.out
-//mpirun --hostfile ~/.mpi_hostfile ~/Desktop/thesis/connect.out
 int main(int argc, char *argv[]){
     //initialize MPI
     MPI_Init(&argc, &argv);
@@ -87,30 +80,3 @@ int main(int argc, char *argv[]){
     MPI_Finalize();
     return 0;
 }
-
-
-
-
-
-
-
-/*
-
-
- char anagram[9] = "stressed";
-    //master
-    if(rank == 0){
-        printf("Begining Program...\n");
-        char test = anagram[0];
-        int cstringSize = 1;
-        while(test){
-            cstringSize++;
-            test = anagram[cstringSize - 1];
-        }
-        printf("The anagram is %d characters long\n", cstringSize);
-        
-        int charPerNode = cstringSize / nodes - 1; //minus one so one is master
-        int charRemainder = cstringSize % nodes - 1; //minus one so one is master
-
-
-*/
